@@ -1,7 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url
-import urllib.parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,12 +57,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maison_project.wsgi.application'
 
-# Database (قاعدة بيانات Supabase السحابية مع تشفير كلمة المرور)
-db_password = urllib.parse.quote("CSzLILzw92TyehEs")
-DATABASE_URL = f"postgresql://postgres.mocnseluidzkdwfgpmxk:{db_password}@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
-
+# Database (SQLite المحلية البسيطة)
 DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
@@ -109,4 +107,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' 
