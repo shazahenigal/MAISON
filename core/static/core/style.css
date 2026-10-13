@@ -1,0 +1,406 @@
+/* --- إعدادات عامة وتنسيق الألوان الفخمة --- */
+:root {
+  --bg-primary: #121212;
+  --bg-secondary: #1a1a1a;
+  --card-bg: #1e1e1e;
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --accent-gold: #d4af37;
+  --border-color: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* --- الهيدر (Header) --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-main);
+}
+
+.logo span {
+  color: var(--accent-gold);
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.header-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.header-links a:hover, 
+.header-links a.active {
+  color: var(--accent-gold);
+}
+
+/* --- البانر الرئيسي (Landing Page - عمودي: الكلام فوق والصورة بالأسفل بحواف منحنية) --- */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-primary);
+  padding: 50px 5% 30px 5%;
+  box-sizing: border-box;
+}
+
+.landing-page-left-section {
+  width: 100%;
+  max-width: 850px;
+  text-align: center;
+  padding: 0 20px 30px 20px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent-gold);
+  padding: 6px 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.landing-page-left-section h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.landing-page-left-section p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-page-search {
+  display: flex;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.landing-page-search input {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 12px 18px;
+  color: var(--text-main);
+  font-size: 14px;
+  outline: none;
+  border-radius: 4px;
+}
+
+.btn {
+  background: var(--accent-gold);
+  color: #121212;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* حاوية البانر بحواف دائرية ناعمة ومنحنية */
+.smooth-banner-wrapper {
+  width: 92%;
+  max-width: 1300px;
+  height: 450px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.smooth-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- أقسام الفلترة (Categories Navigation) --- */
+.categories-nav-section {
+  padding: 30px 5%;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-top: 20px;
+}
+
+.categories-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cat-pill {
+  background: var(--card-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 10px 22px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+}
+
+.cat-pill:hover, 
+.cat-pill.active-cat {
+  background: var(--accent-gold);
+  color: #121212;
+  border-color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* --- قسم المنتجات (Trending Cards) --- */
+.trending-container {
+  padding: 60px 5%;
+}
+
+.trending-top-label {
+  color: var(--accent-gold);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.trending-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.trending-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--text-main);
+}
+
+.trending-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .thumb {
+  transform: scale(1.05);
+}
+
+/* شارات المخزون الذكية */
+.sold-out-badge,
+.low-stock-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.sold-out-badge {
+  background: #c0392b;
+  color: #fff;
+}
+
+.low-stock-badge {
+  background: var(--accent-gold);
+  color: #121212;
+}
+
+.card-info {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.card-name p {
+  color: var(--accent-gold);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.card-name h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+/* --- قسم About --- */
+.about-section {
+  padding: 80px 5%;
+  background: var(--bg-secondary);
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.about-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin: 20px 0;
+  color: var(--text-main);
+}
+
+.about-content p {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* --- قسم Contact Us --- */
+.contact-section {
+  padding: 80px 5%;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-box {
+  max-width: 600px;
+}
+
+.contact-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  margin: 15px 0;
+  color: var(--text-main);
+}
+
+.contact-box p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.contact-details p {
+  color: var(--text-main);
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* --- الفوتر (Footer) --- */
+.footer {
+  text-align: center;
+  padding: 30px 5%;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border-color);
+  letter-spacing: 1px;
+}
+
+/* --- التجاوب مع الشاشات الصغيرة (Responsive Design) --- */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .landing-page-left-section h1 {
+    font-size: 32px;
+  }
+
+  .smooth-banner-wrapper {
+    width: 95%;
+    height: 280px;
+  }
+} 
