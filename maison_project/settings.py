@@ -57,7 +57,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maison_project.wsgi.application'
 
-# Database (SQLite المحلية البسيطة)
+# Database (SQLite المحلية)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
