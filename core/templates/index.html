@@ -9,9 +9,290 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
-  <!-- استدعاء ملف الـ CSS بشكل آمن ومباشر -->
-  <link rel="stylesheet" href="{% static 'style.css' %}" />
-  <link rel="stylesheet" href="{% static 'core/style.css' %}" />
+  <!-- دمج الـ CSS مباشرة لحل مشكلة Vercel نهائياً -->
+  <style>
+    /* --- إعدادات عامة وتنسيق الألوان الفخمة --- */
+    :root {
+      --bg-primary: #121212;
+      --bg-secondary: #1a1a1a;
+      --card-bg: #1e1e1e;
+      --text-main: #ffffff;
+      --text-muted: #aaaaaa;
+      --accent-gold: #d4af37;
+      --border-color: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* --- الهيدر (Header) --- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-main);
+    }
+
+    .logo span {
+      color: var(--accent-gold);
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .header-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    .header-links a:hover, 
+    .header-links a.active {
+      color: var(--accent-gold);
+    }
+
+    /* --- البانر الرئيسي (Landing Page) --- */
+    .landing-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      background: var(--bg-primary);
+      padding: 50px 5% 30px 5%;
+      box-sizing: border-box;
+    }
+
+    .landing-page-left-section {
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+      padding: 0 20px 30px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--accent-gold);
+      padding: 6px 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .landing-page-left-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .landing-page-left-section p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .landing-page-search {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .landing-page-search input {
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      border-radius: 4px;
+    }
+
+    .btn {
+      background: var(--accent-gold);
+      color: #121212;
+      border: none;
+      padding: 12px 24px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .smooth-banner-wrapper {
+      width: 92%;
+      max-width: 1300px;
+      height: 450px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .smooth-banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- قسم المنتجات (Trending Cards) --- */
+    .trending-container {
+      padding: 60px 5%;
+    }
+
+    .trending-top-label {
+      color: var(--accent-gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .trending-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .trending-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--text-main);
+    }
+
+    .trending-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+
+    .thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .thumb {
+      transform: scale(1.05);
+    }
+
+    .card-info {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex: 1;
+    }
+
+    .card-name p {
+      color: var(--accent-gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .card-name h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--text-main);
+      margin-bottom: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px 5%;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .landing-page-left-section h1 {
+        font-size: 32px;
+      }
+      .smooth-banner-wrapper {
+        width: 95%;
+        height: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -107,103 +388,6 @@
     </div>
   </main>
 
-  <!-- BOOKED PASSES DRAWER -->
-  <div class="cart-overlay" id="cartOverlay" onclick="closeMyCart()"></div>
-  <div class="cart-drawer" id="cartDrawer" style="display: flex; flex-direction: column;">
-    <div class="cart-header">
-      <h2>Booked Passes & Checkout</h2>
-      <button class="close-cart" id="closeCart" onclick="closeMyCart()">&times;</button>
-    </div>
-    
-    <!-- STEP 1: CART ITEMS VIEW -->
-    <div id="stepCartView" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
-      <div class="cart-items" id="cartItemsContainer" style="flex: 1; overflow-y: auto; padding: 15px;"></div>
-      <div class="cart-footer" style="padding: 15px; border-top: 1px solid var(--border-color);">
-        <div class="cart-totals" style="margin-bottom: 15px; font-size: 14px; font-weight: bold;">
-          <span>Total: </span><span id="cartSubtotalMain">0.00 EGP</span>
-        </div>
-        <button type="button" class="btn checkout-btn" onclick="goToStepDetails()" style="width: 100%; padding: 12px; cursor: pointer;">Continue</button>
-      </div>
-    </div>
-
-    <!-- STEP 2: CHECKOUT FORM -->
-    <form id="orderForm" style="flex: 1; display: none; flex-direction: column; overflow-y: auto; padding: 15px;" onsubmit="submitOrder(event)">
-      {% csrf_token %}
-      
-      <!-- Contact Details -->
-      <div style="margin-bottom: 15px;">
-        <h4 style="font-size: 13px; color: var(--accent-gold); margin-bottom: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;">1. Contact Details (Required)</h4>
-        
-        <div style="margin-bottom: 8px;">
-          <label style="font-size: 11px; display: block; margin-bottom: 2px;">Full Name *</label>
-          <input type="text" id="orderFullName" required style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-        </div>
-        
-        <div style="margin-bottom: 8px;">
-          <label style="font-size: 11px; display: block; margin-bottom: 2px;">Phone Number *</label>
-          <input type="text" id="orderPhone" required placeholder="010xxxxxxxx" style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-        </div>
-        
-        <div style="margin-bottom: 8px;">
-          <label style="font-size: 11px; display: block; margin-bottom: 2px;">Gmail Address *</label>
-          <input type="email" id="orderEmail" required placeholder="name@gmail.com" style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-        </div>
-      </div>
-
-      <!-- Promo Code Optional -->
-      <div style="margin-bottom: 15px;">
-        <h4 style="font-size: 13px; color: var(--accent-gold); margin-bottom: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;">2. Promo Code (Optional)</h4>
-        <div style="display: flex; gap: 8px;">
-          <input type="text" id="promoInput" placeholder="Enter code or leave blank" style="flex: 1; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-          <button type="button" id="applyPromoBtn" class="btn-sm" style="padding: 7px 10px; cursor: pointer;">Apply</button>
-        </div>
-        <div id="promoMessage" style="font-size: 11px; margin-top: 4px;"></div>
-      </div>
-
-      <!-- Payment Card Details -->
-      <div style="margin-bottom: 15px;">
-        <h4 style="font-size: 13px; color: var(--accent-gold); margin-bottom: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;">3. Secure Card Payment</h4>
-        
-        <div style="margin-bottom: 8px;">
-          <label style="font-size: 11px; display: block; margin-bottom: 2px;">Card Number *</label>
-          <input type="text" id="cardNumber" required placeholder="4242 4242 4242 4242" maxlength="19" style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-        </div>
-        
-        <div style="display: flex; gap: 8px;">
-          <div style="flex: 1;">
-            <label style="font-size: 11px; display: block; margin-bottom: 2px;">Expiry Date *</label>
-            <input type="text" id="cardExpiry" required placeholder="MM/YY" maxlength="5" style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-          </div>
-          <div style="flex: 1;">
-            <label style="font-size: 11px; display: block; margin-bottom: 2px;">CVV *</label>
-            <input type="password" id="cardCvv" required placeholder="123" maxlength="4" style="width: 100%; padding: 7px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-secondary); color: var(--text-main);" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Totals & Submit -->
-      <div class="cart-totals" style="border-top: 1px solid var(--border-color); padding-top: 8px; margin-bottom: 12px; font-size: 13px;">
-        <div class="subtotal-row"><span>Subtotal:</span> <span id="cartSubtotal">0.00 EGP</span></div>
-        <div class="discount-row" id="discountRow" style="display: none; color: #27ae60;"><span>Discount:</span> <span id="cartDiscount">-0.00 EGP</span></div>
-        <div class="total-row" style="font-weight: bold; font-size: 15px; margin-top: 3px;"><span>Total:</span> <span id="cartTotal">0.00 EGP</span></div>
-      </div>
-
-      <div style="display: flex; gap: 8px;">
-        <button type="button" class="btn" onclick="backToCartView()" style="background: var(--bg-secondary); color: var(--text-main); border: 1px solid var(--border-color); padding: 9px; cursor: pointer;">Back</button>
-        <button type="submit" class="btn checkout-btn" style="flex: 1; padding: 9px; cursor: pointer;">Pay & Confirm Order</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- SUCCESS MODAL -->
-  <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 20000; align-items: center; justify-content: center;">
-    <div style="background: var(--bg-main); padding: 40px; border-radius: 12px; text-align: center; max-width: 400px; width: 90%; border: 1px solid var(--border-color);">
-      <div style="font-size: 60px; margin-bottom: 15px;">✅</div>
-      <h3 style="font-family: 'Playfair Display', serif; color: var(--text-main); font-size: 20px; line-height: 1.5;">Order added successfully! Thank you. We are waiting for you! 🎉</h3>
-      <button onclick="closeSuccessModal()" class="btn" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">OK</button>
-    </div>
-  </div>
-
   <footer class="footer">
     <p>&copy; 2026 MAISON Fashion House. All rights reserved.</p>
   </footer>
@@ -212,214 +396,16 @@
     function getCart() {
       return JSON.parse(localStorage.getItem('maison_tickets_cart')) || [];
     }
-
     function saveCart(cart) {
       localStorage.setItem('maison_tickets_cart', JSON.stringify(cart));
       updateCartCount();
     }
-
     function updateCartCount() {
       const cart = getCart();
       const count = cart.reduce((sum, item) => sum + item.quantity, 0);
       const countEl = document.getElementById('cartCount');
       if (countEl) countEl.innerText = count;
     }
-
-    window.addToCart = function(ticketId, title, price, stock) {
-      let cart = getCart();
-      const existing = cart.find(item => item.id === ticketId);
-      let currentQty = existing ? existing.quantity : 0;
-
-      if (currentQty + 1 > stock) {
-        alert('Cannot add more than available stock.');
-        return;
-      }
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ id: ticketId, title: title, price: parseFloat(price), quantity: 1, stock: stock });
-      }
-      saveCart(cart);
-      openMyCart();
-    };
-
-    window.openMyCart = function() {
-      document.getElementById('cartDrawer').classList.add('open');
-      document.getElementById('cartOverlay').style.display = 'block';
-      backToCartView();
-    };
-
-    window.closeMyCart = function() {
-      document.getElementById('cartDrawer').classList.remove('open');
-      document.getElementById('cartOverlay').style.display = 'none';
-    };
-
-    window.goToStepDetails = function() {
-      const cart = getCart();
-      if (cart.length === 0) {
-        alert('Your cart is empty.');
-        return;
-      }
-      document.getElementById('stepCartView').style.display = 'none';
-      document.getElementById('orderForm').style.display = 'flex';
-      calculateTotals();
-    };
-
-    window.backToCartView = function() {
-      document.getElementById('orderForm').style.display = 'none';
-      document.getElementById('stepCartView').style.display = 'flex';
-      renderCartItems();
-    };
-
-    function renderCartItems() {
-      const container = document.getElementById('cartItemsContainer');
-      if (!container) return;
-      const cart = getCart();
-
-      if (cart.length === 0) {
-        container.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 40px; font-size: 14px;">No passes selected yet.</p>`;
-        document.getElementById('cartSubtotalMain').innerText = '0.00 EGP';
-        return;
-      }
-
-      container.innerHTML = cart.map(item => `
-        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
-          <div style="flex: 1;">
-            <h4 style="font-size: 13px; font-family: 'Playfair Display', serif; color: var(--text-main);">${item.title}</h4>
-            <p style="font-size: 11px; color: var(--accent-gold);">${item.price} EGP</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <button type="button" onclick="updateQty(${item.id}, -1)" style="padding: 2px 6px; cursor: pointer; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 3px; color: var(--text-main);">-</button>
-            <span style="font-size: 12px; font-weight: bold;">${item.quantity}</span>
-            <button type="button" onclick="updateQty(${item.id}, 1)" style="padding: 2px 6px; cursor: pointer; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 3px; color: var(--text-main);">+</button>
-          </div>
-        </div>
-      `).join('');
-
-      let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      document.getElementById('cartSubtotalMain').innerText = `${subtotal.toFixed(2)} EGP`;
-    }
-
-    window.updateQty = function(ticketId, change) {
-      let cart = getCart();
-      const item = cart.find(i => i.id === ticketId);
-      if (!item) return;
-
-      const newQty = item.quantity + change;
-      if (newQty > item.stock) {
-        alert('Reached maximum available stock.');
-        return;
-      }
-
-      if (newQty <= 0) {
-        cart = cart.filter(i => i.id !== ticketId);
-      } else {
-        item.quantity = newQty;
-      }
-      saveCart(cart);
-      renderCartItems();
-    };
-
-    let currentDiscountRate = 0;
-    let appliedPromoCodeStr = '';
-
-    function calculateTotals() {
-      const cart = getCart();
-      let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const discount = subtotal * currentDiscountRate;
-      const total = subtotal - discount;
-
-      document.getElementById('cartSubtotal').innerText = `${subtotal.toFixed(2)} EGP`;
-      document.getElementById('cartTotal').innerText = `${total.toFixed(2)} EGP`;
-      const discRow = document.getElementById('discountRow');
-      if (discount > 0) {
-        discRow.style.display = 'flex';
-        document.getElementById('cartDiscount').innerText = `-${discount.toFixed(2)} EGP`;
-      } else {
-        discRow.style.display = 'none';
-      }
-    }
-
-    document.getElementById('applyPromoBtn').addEventListener('click', async () => {
-      const code = document.getElementById('promoInput').value.trim();
-      const msgEl = document.getElementById('promoMessage');
-      if (!code) {
-        currentDiscountRate = 0;
-        appliedPromoCodeStr = '';
-        msgEl.style.color = 'var(--text-muted)';
-        msgEl.innerText = 'Skipped promo code.';
-        calculateTotals();
-        return;
-      }
-
-      try {
-        const response = await fetch('/validate-promo/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'
-          },
-          body: JSON.stringify({ code: code })
-        });
-        const data = await response.json();
-        if (data.valid) {
-          currentDiscountRate = data.discount / 100;
-          appliedPromoCodeStr = code;
-          msgEl.style.color = '#27ae60';
-          msgEl.innerText = `Promo applied: ${data.discount}% OFF!`;
-        } else {
-          currentDiscountRate = 0;
-          appliedPromoCodeStr = '';
-          msgEl.style.color = '#c0392b';
-          msgEl.innerText = data.message;
-        }
-        calculateTotals();
-      } catch (err) {
-        console.error(err);
-      }
-    });
-
-    window.submitOrder = async function(e) {
-      e.preventDefault();
-      const cart = getCart();
-      if (cart.length === 0) return;
-
-      const formData = new FormData();
-      formData.append('ticket_id', cart[0].id);
-      formData.append('quantity', cart[0].quantity);
-      formData.append('full_name', document.getElementById('orderFullName').value);
-      formData.append('phone_number', document.getElementById('orderPhone').value);
-      formData.append('email', document.getElementById('orderEmail').value);
-      formData.append('promo_code_used', appliedPromoCodeStr);
-      formData.append('card_number', document.getElementById('cardNumber').value);
-
-      try {
-        const response = await fetch('/checkout/', {
-          method: 'POST',
-          headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-          },
-          body: formData
-        });
-        const data = await response.json();
-        if (data.success) {
-          localStorage.removeItem('maison_tickets_cart');
-          closeMyCart();
-          document.getElementById('successModal').style.display = 'flex';
-        } else {
-          alert('Error: ' + data.message);
-        }
-      } catch (err) {
-        alert('An error occurred during checkout.');
-      }
-    };
-
-    window.closeSuccessModal = function() {
-      document.getElementById('successModal').style.display = 'none';
-      location.reload();
-    };
-
     document.addEventListener('DOMContentLoaded', () => {
       updateCartCount();
     });
