@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+import urllib.parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -58,11 +59,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maison_project.wsgi.application'
 
-# Database (قاعدة بيانات Supabase السحابية)
+# Database (قاعدة بيانات Supabase السحابية مع تشفير كلمة المرور)
+db_password = urllib.parse.quote("CSzLILzw92TyehEs")
+DATABASE_URL = f"postgresql://postgres.mocnseluidzkdwfgpmxk:{db_password}@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://postgres.mocnseluidzkdwfgpmxk:[CSzLILzw92TyehEs]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres'
-    )
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 
 # Password validation
