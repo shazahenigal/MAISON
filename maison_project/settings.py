@@ -13,7 +13,8 @@ SECRET_KEY = 'django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# قبول جميع الدومينات والدومين الخاص بـ Vercel صراحةً
+ALLOWED_HOSTS = ['*', '.vercel.app', 'maison-pwdg.vercel.app']
 
 # Application definition
 
@@ -29,7 +30,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <--- تشغيل Whitenoise لخدمة ملفات الـ Static
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # تشغيل Whitenoise لخدمة ملفات الـ Static
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
